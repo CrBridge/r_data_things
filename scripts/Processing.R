@@ -8,9 +8,6 @@ rolling_stone <- readr::read_csv('https://raw.githubusercontent.com/rfordatascie
   #Only want to work with albums by a single artist/group
 rolling_stone <- rolling_stone[!grepl('Various Artists', rolling_stone$clean_name),]
 
-#genre, member_count, gender, release_year, age_at_top_500 and maybe more columns have NA values
-  #gotta figure out what to do with them (For full list use colSums(is.na(df))])
-
 #Look for typos and such (example, one entry has genre Blues/ROck)
 rolling_stone$genre <- str_replace(rolling_stone$genre, "Blues/Blues ROck", "Blues/Blues Rock")
 
@@ -18,6 +15,9 @@ rolling_stone$genre <- str_replace(rolling_stone$genre, "Blues/Blues ROck", "Blu
 #Assumes there's no edge case where an artist released another album the same year as their debut
 
 rolling_stone$is_debut <- ifelse(rolling_stone$years_between == 0, 1, 0)
+
+# Create 'decade' variable, decade of album release, rounds the release variable down to the nearest 10
+rolling_stone$release_decade <- rolling_stone$release_year - (rolling_stone$release_year %% 10)
 
 View(rolling_stone)
 

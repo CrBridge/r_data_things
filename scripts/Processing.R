@@ -8,6 +8,10 @@ rolling_stone <- readr::read_csv('https://raw.githubusercontent.com/rfordatascie
   #Only want to work with albums by a single artist/group
 rolling_stone <- rolling_stone[!grepl('Various Artists', rolling_stone$clean_name),]
 
+#Replace values of 201 in peak billboard position (which represents not being on there, I believe) with NA
+  #Replace so it doesn't possibly mess with calculations down the line
+rolling_stone$peak_billboard_position[rolling_stone$peak_billboard_position == 201] <- NA
+
 #Look for typos and such (example, one entry has genre Blues/ROck)
 rolling_stone$genre <- str_replace(rolling_stone$genre, "Blues/Blues ROck", "Blues/Blues Rock")
 

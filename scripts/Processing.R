@@ -28,3 +28,18 @@ View(rolling_stone)
 #To use member_count as categorical data, need to convert to factor
   #Before I do that, is there any reason I would want them as numbers?
     #Could also use a temp value if I just want to convert for plots
+
+#Truthfully, I'm not sure what the spotify popularity column even is,
+  #Its not a ranking, it's not monthly listeners in millions
+
+genre_change_df <- rolling_stone %>%
+  group_by(genre) %>%
+  summarise(
+    genre_ave_2003 = mean(rank_2003, na.rm = TRUE),
+    genre_ave_2012 = mean(rank_2012, na.rm = TRUE),
+    genre_ave_2020 = mean(rank_2020, na.rm = TRUE),
+    amount_of_genre = n()
+  ) %>%
+  ungroup()
+
+View(genre_change_df)

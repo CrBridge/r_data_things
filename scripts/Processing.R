@@ -42,8 +42,12 @@ genre_change_df <- rolling_stone %>%
     genre_ave_2003 = mean(rank_2003, na.rm = TRUE),
     genre_ave_2012 = mean(rank_2012, na.rm = TRUE),
     genre_ave_2020 = mean(rank_2020, na.rm = TRUE),
+    genre_ave_billboard_weeks = mean(weeks_on_billboard, na.rm = TRUE),
+    genre_ave_billboard_ranks = mean(peak_billboard_position, na.rm = TRUE),
     amount_of_genre = n()
   ) %>%
   ungroup()
+
+genre_change_df$genre_ave_all =rowMeans(genre_change_df[, c("genre_ave_2003", "genre_ave_2012", "genre_ave_2020")])
 
 View(genre_change_df)

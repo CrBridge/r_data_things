@@ -5,3 +5,4 @@ Just some data stuff I did in R. Data used by week comes from the [tidytuesday r
 ![](weeks/2024-05-07/output/rolling_stone_2.png)
 ![](weeks/2024-06-04/cheese.png)
 ![](weeks/2024-07-30/output.png)
+![](weeks/2024-08-06/output.png)
